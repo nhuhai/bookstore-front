@@ -15,10 +15,10 @@ export default class App extends React.Component {
     const newInvoice = Object.assign({}, currentInvoice);
     const { subInvoices = [] } = newInvoice;
     const subInvoiceToAddRowTo = subInvoices[subInvoiceIndex];
-    const { entries = [] } = subInvoiceToAddRowTo;
 
     if (!subInvoiceToAddRowTo) return;
 
+    const { entries = [] } = subInvoiceToAddRowTo;
     subInvoiceToAddRowTo.entries = [...entries, newRow];
 
     this.setState({
@@ -31,10 +31,10 @@ export default class App extends React.Component {
     const newInvoice = Object.assign({}, currentInvoice);
     const { subInvoices = [] } = newInvoice;
     const subInvoiceToSaveRowTo = subInvoices[subInvoiceIndex];
-    const { entries = [] } = subInvoiceToSaveRowTo;
 
     if (!subInvoiceToSaveRowTo) return;
 
+    const { entries = [] } = subInvoiceToSaveRowTo;
     const { name, quantity, price } = newData;
 
     entries[rowIndex] = {
@@ -48,7 +48,21 @@ export default class App extends React.Component {
     });
   }
 
-  onDeleteSubInvoiceRow = () => {}
+  onDeleteSubInvoiceRow = (subInvoiceIndex, rowIndex) => {
+    const { currentInvoice } = this.state;
+    const newInvoice = Object.assign({}, currentInvoice);
+    const { subInvoices = [] } = newInvoice;
+    const subInvoiceToSaveRowTo = subInvoices[subInvoiceIndex];
+    const { entries = [] } = subInvoiceToSaveRowTo;
+
+    if (!subInvoiceToSaveRowTo) return;
+
+    entries.splice(rowIndex, 1);
+
+    this.setState({
+      currentInvoice: newInvoice,
+    });
+  }
 
   state = {
     collapsed: false,
@@ -57,6 +71,7 @@ export default class App extends React.Component {
     currentInvoice: null,
     onAddNewRowToSubInvoice: this.onAddNewRowToSubInvoice,
     onSaveSubInvoiceRow: this.onSaveSubInvoiceRow,
+    onDeleteSubInvoiceRow: this.onDeleteSubInvoiceRow,
   };
 
   onCollapse = collapsed => this.setState({ collapsed });
@@ -164,10 +179,7 @@ export default class App extends React.Component {
                 <InvoiceHeader />
                 <Content style={{ margin: '0' }}>
                   <div style={{ padding: '0 24px', background: '#fff', minHeight: 360 }}>
-                    <InvoiceTabs
-                      onNewTab={this.onOpenSubInvoiceForm}
-                      onDeleteSubInvoiceRow={this.onDeleteSubInvoiceRow}
-                    />
+                    <InvoiceTabs onNewTab={this.onOpenSubInvoiceForm} />
                   </div>
                 </Content>
               </Layout>

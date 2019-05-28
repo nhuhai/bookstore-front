@@ -37,6 +37,7 @@ export default class InvoiceTabs extends React.Component {
             currentInvoice,
             onAddNewRowToSubInvoice,
             onSaveSubInvoiceRow,
+            onDeleteSubInvoiceRow,
           }) => {
           const { subInvoices } = currentInvoice;
           const subInvoiceTabs = this.getSubTabsConfig(subInvoices);
@@ -59,6 +60,7 @@ export default class InvoiceTabs extends React.Component {
                     subInvoice={subInvoice}
                     onAddNewRowToSubInvoice={onAddNewRowToSubInvoice}
                     onSaveSubInvoiceRow={onSaveSubInvoiceRow}
+                    onDeleteSubInvoiceRow={onDeleteSubInvoiceRow}
                   />
                 </TabPane>
               ))}

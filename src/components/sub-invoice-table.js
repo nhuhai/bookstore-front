@@ -129,9 +129,10 @@ export default class SubInvoiceTable extends React.Component {
     ];
   }
 
-  handleDelete = key => {
-    const dataSource = [...this.state.dataSource];
-    this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
+  handleDelete = rowIndex => {
+    const { subInvoiceIndex, onDeleteSubInvoiceRow } = this.props;
+
+    onDeleteSubInvoiceRow(subInvoiceIndex, rowIndex);
   };
 
   handleSave = (row, rowIndex) => {
