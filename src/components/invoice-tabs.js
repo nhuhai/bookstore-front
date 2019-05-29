@@ -50,7 +50,7 @@ export default class InvoiceTabs extends React.Component {
               onEdit={this.onEdit}
             >
               <TabPane tab="Chính" key="main" closable={false}>
-                <MainInvoiceTable />
+                <MainInvoiceTable currentInvoice={currentInvoice} />
               </TabPane>
 
               {subInvoiceTabs.map(({ title, key, closable, subInvoice }) => (

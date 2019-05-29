@@ -102,7 +102,6 @@ export default class App extends React.Component {
         lastModifiedTime: new Date().toLocaleString(),
         isSaved: false,
         status: 'New',
-        total: 0,
         subInvoices: [{
           name: 'Sach Giao Khoa',
           discountPercent: 20,
@@ -140,8 +139,6 @@ export default class App extends React.Component {
       newInvoice.subInvoices.push({
         name,
         discountPercent,
-        totalBeforeDiscount: '',
-        totalAfterDiscount: ''
       });
 
       form.resetFields();
